@@ -1,0 +1,313 @@
+% Формат бумаги: А4.
+\documentclass[a4paper]{report}
+
+% UTF-8 encoding
+\usepackage[utf8]{inputenc}
+% Russian
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath,amsfonts,amssymb,cite,url,verbatim,graphicx,wrapfig,physics,seqsplit}
+
+% Подрисунки
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+
+\usepackage{booktabs}
+\graphicspath{{images/}}
+
+% Поля: верхнее – 2 см, нижнее – 2 см, левое – 3 см, правое – 1.5 см.
+%\usepackage[showframe]{geometry} % showframe - показать рамки
+\usepackage{geometry}
+\geometry{
+	left = 3cm,
+	top = 2cm,
+	right = 1.5cm,
+	bottom = 2cm
+}
+
+% Кегль:
+%% текст в таблице, подписи к рисункам, таблицам – 12 пт,
+\renewcommand{\small}{\fontsize{12}{12}\selectfont}
+%% основной текст – 14 пт,
+\renewcommand{\normalsize}{\fontsize{14}{14}\selectfont}
+%% названия параграфов – 16 пт,
+\renewcommand{\large}{\fontsize{16}{16}\selectfont}
+%% названия глав – 18 пт,
+\renewcommand{\Large}{\fontsize{18}{18}\selectfont}
+\renewcommand{\Huge}{\fontsize{20}{20}\selectfont}
+
+
+\usepackage{sectsty}
+\sectionfont{\Large}
+\subsectionfont{\large}
+\paragraphfont{\normalsize}
+\usepackage[font=small]{caption}
+
+% Межстрочный интервал: 1.5 строки.
+\linespread{1.5}
+
+% Абзацный отступ. Первая строка каждого абзаца должна иметь абзацный отступ 1.25 см.
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+% Выравнивание основного текста по ширине поля.
+\usepackage{ragged2e}
+\justifying
+
+% Отключение расстановки переносов + нормальная ширина строки
+\pretolerance=1000
+\hyphenpenalty=10000
+\tolerance=2000 
+\emergencystretch=25pt
+
+%%% здесь лучше ничего не трогать
+% Глубина: 1=глава-раздел
+\setcounter{tocdepth}{1}
+
+% Выключение нумерации раздела
+%\renewcommand{\thesection}{}
+% Выключение нумерации подраздела
+%\renewcommand{\thesubsection}{}
+
+% Выравниваение параграфов (разделов) по центру
+\allsectionsfont{\centering}
+
+\usepackage{titlesec}
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+% Какая-то команда
+%\newcommand{\sectionbreak}{\clearpage}
+
+%\cftsetindents{chapter}{0em}{0em}
+%\cftsetindents{subsection}{2em}{0em}
+% Какие-то отступы
+%\cftsetindents{section}{0em}{0em}
+%\cftsetindents{subsection}{2em}{0em}
+
+
+% Настройка отображения главы в тексте
+\titleformat{\chapter}[display]
+	{\filcenter}
+	{\bfseries \Large{\chaptertitlename~\thechapter}}
+	{15pt}
+	{\bfseries \Large}{}
+
+% Настройка вертикальных и горизонтальных отступов
+\titlespacing*{\chapter}{0pt}{0pt}{8pt}
+\titlespacing*{\section}{\parindent}{*4}{*4}
+
+% Название для оглавления с отступом после него на 2,5 см
+\AtBeginDocument{\renewcommand{\contentsname}{\begin{center} \vskip-2.5cm \Large{Содержание}\end{center}}}
+\AtBeginDocument{\renewcommand{\bibname}{}}
+
+% Настройка отображения главы в содержании
+\titlecontents{chapter}% <section-type>
+	[0pt]% <left>
+	{}% <above-code>
+	{\bfseries\chaptername~\thecontentslabel.~}% <numbered-entry-format>
+	{}% <numberless-entry-format>
+	{\bfseries\titlerule*[1pc]{.}\contentspage}% <filler-page-format>
+
+% Настройка отображения раздела в содержании	
+\titlecontents{section}% <section-type>
+	[1.25cm]% <left>
+	{}% <above-code>
+	{\thecontentslabel~}% <numbered-entry-format>
+	{}% <numberless-entry-format>
+	{\titlerule*[1pc]{.}\contentspage}% <filler-page-format>
+	
+% Точка в номере параграфа и значок параграфа
+%\renewcommand{\thesection}{\S~\arabic{chapter}.\arabic{section}.}
+
+% Сброс нумерации формул, рисунков, таблиц
+%\renewcommand{\theequation}{\arabic{equation}}
+\usepackage{chngcntr}
+\counterwithout{equation}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+% Установка шрифтов
+\usepackage{sectsty}
+\chapterfont{\Large}
+\sectionfont{\large\centering}
+\paragraphfont{\normalsize}
+\usepackage[font=small]{caption}
+
+%%%
+\newtheorem{teor}{Теорема}
+\newtheorem{defin}{Определение}
+
+% Точка вместо двоеточия в названиях рисунков и таблиц
+\usepackage[labelsep=period]{caption}
+
+% Цвет текста
+\usepackage{xcolor}
+
+% Clicable TOC
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+% Список литературы, убрать лишнюю страницу
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\chapter*{\bibname}}{\section*{\bibname}}{}{}
+
+% This pack­age gives you easy ac­cess to the Lorem Ip­sum dummy text; an op­tion is avail­able to sep­a­rate the para­graphs of the dummy text into TEX-para­graphs.
+\usepackage{lipsum}
+
+\begin{document}
+	\thispagestyle{empty}
+	\begin{center}
+		\textsc{Санкт-Петербургский государственный университет \\
+			\textbf{Кафедра информационных систем}} \\
+		\vspace{1cm}
+		\Large{\textbf{ФИО полностью}} \\
+		\vspace{1cm}
+		\large{\textbf{Магистерская диссертация}} \\
+		\vspace{2cm}
+		\Large{\textbf{Название диссертации}} \\
+		\normalsize{Направление 010402 \\
+			Прикладная математика и информатика \\
+			Математическое моделирование в задачах естествознания} \\
+	\end{center}
+	\vspace{2cm}
+	\hspace{9cm} Научный руководитель, \\
+	\hspace*{9cm} доктор физ.-мат. наук, \\
+	\hspace*{9cm} профессор \\
+	\hspace*{9cm} Матросов А. В.\\
+	\begin{center}
+		\vfill
+		Санкт-Петербург \\
+		2017
+	\end{center}
+	\newpage
+	%%%%% CONTENTS %%%%%
+	\tableofcontents
+	\newpage
+	
+	\chapter*{Введение}
+	\addcontentsline{toc}{chapter}{\bfseries Введение}
+	\lipsum[1-5]
+	
+	\chapter*{Постановка задачи}
+	\addcontentsline{toc}{chapter}{\bfseries Постановка задачи}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{images/foobar.eps} 
+		\caption{Image caption}		
+		\label{fig:foobar}		
+	\end{figure}
+	\lipsum[6-12]
+	
+	\chapter*{Обзор литературы}
+	\addcontentsline{toc}{chapter}{\bfseries Обзор литературы}
+	\lipsum[13-17]
+	
+	\chapter{Название первой главы}
+	\lipsum[18-19]
+	\section{Первый параграф}
+	\lipsum[19-24]
+	\section{Второй параграф}	
+	\lipsum[24-29]
+	\section{Третий параграф}
+	\lipsum[29-34]
+	
+	\chapter{Название второй главы}
+	\lipsum[35-36]
+	\section{Первый параграф}
+	\lipsum[37-42]
+	\section{Второй параграф}	
+	\lipsum[42-47]
+	\section{Третий параграф}
+	\lipsum[47-52]
+		
+	\chapter{Название третьей главы}
+	\lipsum[52-53]
+	\section{Первый параграф}
+	\begin{figure}[h!]
+		\centering
+		\subfigure[]{
+			\includegraphics[width=0.48\textwidth]{images/foo.eps}
+			\label{fig:foo}
+		}
+		\hspace{-2ex}
+		\subfigure[]{
+			\includegraphics[width=0.48\textwidth]{images/bar.eps}
+			\label{fig:bar}
+		} 
+		\caption{Image caption: \subref{fig:foo} Foo; \subref{fig:bar} Bar}		
+		\label{fig:double-foo-bar}		
+	\end{figure}
+	\lipsum[53-58]
+	\section{Второй параграф}	
+	\lipsum[58-63]
+	\section{Третий параграф}
+	\begin{table}[h!]
+		\small
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			N & Foo & Bar
+			\\ \hline
+			%			1   & $\pm$ 0.44969469543403744 & $\pm$ 0.38010954324494359 \\ \hline
+			%			2   & $\pm$ 0.44216359144626031 & $\pm$ 0.45870123259724908 \\ \hline
+			%			3   & $\pm$ 0.44133731310780945 & $\pm$ 0.44056187347829946 \\ \hline
+			%			4   & $\pm$ 0.44137288286167477 & $\pm$ 0.44001390378723744 \\ \hline
+			5   & $\pm$ 0.44123418885718421 & $\pm$ 0.44570319394514344 \\ \hline
+			%			10  & $\pm$ 0.44130320687361457 & $\pm$ 0.44128179701095466 \\ \hline
+			%			20  & $\pm$ 0.44130147348281517 & $\pm$ 0.44130150495157090 \\ \hline
+			30  & $\pm$ 0.44130125252097399 & $\pm$ 0.44130125857966327 \\ \hline
+			%			40  & $\pm$ 0.44130119770410487 & $\pm$ 0.44130119991834346 \\ \hline
+			50  & $\pm$ 0.44130117526630928 & $\pm$ 0.44130117622863519 \\ \hline
+			%			60  & $\pm$ 0.44130116393968763 & $\pm$ 0.44130116440223840 \\ \hline
+			%			70  & $\pm$ 0.44130115768329218 & $\pm$ 0.44130115792408247 \\ \hline
+			80  & $\pm$ 0.44130115405877634 & $\pm$ 0.44130115419354609 \\ \hline
+			%			90  & $\pm$ 0.44130115188889646 & $\pm$ 0.44130115196964533 \\ \hline
+			100 & $\pm$ 0.44130115055301562 & $\pm$ 0.44130115060453695 \\ \hline
+		\end{tabular}
+		\caption{Table caption}
+		\label{table:combined_3p-vx-vy-coeff}
+	\end{table}
+	\lipsum[63-68]
+		
+	\chapter*{Выводы}
+	\addcontentsline{toc}{chapter}{\bfseries Выводы}
+	\lipsum[69-73]
+		
+	\chapter*{Заключение}
+	\addcontentsline{toc}{chapter}{\bfseries Заключение}
+	\lipsum[74-78]
+	
+	\chapter*{Список литературы}
+	\addcontentsline{toc}{chapter}{\bfseries Список литературы}	
+	\begin{thebibliography}{9}
+		\bibitem{bib:matrosov-1}
+		Матросов~А.\:В.
+		Вычислительная устойчивость алгоритма метода начальных функций
+		// Вестник Санк-Петербургского университета. Серия 10. Прикладная математика. Информатика. Процессы управления, 2010. № 4. С. 30--39.	
+		
+		\bibitem{bib:matrosov-2}
+		Матросов~А.\:В.
+		Сходимость степенных рядов в методе начальных функций
+		// Вестник Санкт-Петербургского университета. Серия 10. Прикладная математика. Информатика. Процессы управления, 2012. № 1. С. 41-51.	
+		
+		\bibitem{bib:matrosov-3}
+		Matrosov~A.\:V.
+		A numerical-analytical decomposition method in analyses of complex structures
+		// 2014 International conference on computer technologies in physical and engineering applications (ICCTPEA)
+		/ Editor: E.\:I. Veremey. St.-Petersburg: SPSU, 2014. P. 104--105.
+	\end{thebibliography}
+
+	\chapter*{Приложение A}
+	\addcontentsline{toc}{chapter}{\bfseries Приложение A}
+	
+	\chapter*{Приложение B}
+	\addcontentsline{toc}{chapter}{\bfseries Приложение B}
+	
+	\chapter*{Приложение C}
+	\addcontentsline{toc}{chapter}{\bfseries Приложение C}
+\end{document}
